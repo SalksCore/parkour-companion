@@ -12,5 +12,10 @@
   "hud.parkour-companion.done": "Terminé !",
   "hud.parkour-companion.rank": "#%s",
   "hud.parkour-companion.new-best": "Nouveau record %s",
-  "hud.parkour-companion.no-best": "%s sur ton record"
+  "hud.parkour-companion.no-best": "%s sur ton record",
+  "decor.parkour-companion.start": "Départ",
+  "decor.parkour-companion.best": "Ton record %s · #%s",
+  "decor.parkour-companion.no-best": "Pas encore de record",
+  "decor.parkour-companion.board": "Meilleurs temps",
+  "decor.parkour-companion.empty": "Personne n'a encore fini"
 }

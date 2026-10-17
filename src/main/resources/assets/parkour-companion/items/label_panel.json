@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "parkour-companion:item/label_panel"
+  }
+}

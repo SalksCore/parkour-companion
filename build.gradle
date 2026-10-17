@@ -9,6 +9,14 @@ base {
     archivesName = 'parkour-companion'
 }
 
+loom {
+    runs {
+        client {
+            programArgs '--username', 'Salks', '--quickPlayMultiplayer', 'localhost:25565'
+        }
+    }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.officialMojangMappings()

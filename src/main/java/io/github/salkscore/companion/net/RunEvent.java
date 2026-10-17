@@ -19,4 +19,7 @@ public sealed interface RunEvent {
 
     record Stop() implements RunEvent {
     }
+
+    record Courses(List<CourseInfo> courses) implements RunEvent {
+    }
 }

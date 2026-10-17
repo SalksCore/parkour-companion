@@ -28,6 +28,7 @@ public record RunPayload(RunEvent event) implements CustomPacketPayload {
             case 0 -> readStart(buf);
             case 1 -> new RunEvent.Checkpoint(buf.readVarInt(), buf.readLong());
             case 2 -> new RunEvent.Finish(buf.readLong(), buf.readVarInt());
+            case 4 -> readCourses(buf);
             default -> new RunEvent.Stop();
         };
         return new RunPayload(event);
@@ -41,9 +42,42 @@ public record RunPayload(RunEvent event) implements CustomPacketPayload {
         int count = buf.readVarInt();
         List<Vec3> points = new ArrayList<>(count);
         for (int i = 0; i < count; i++) {
-            points.add(new Vec3(buf.readDouble(), buf.readDouble(), buf.readDouble()));
+            points.add(readVec(buf));
         }
         return new RunEvent.Start(course, name, dimension, List.copyOf(points));
+    }
+
+    private static RunEvent.Courses readCourses(RegistryFriendlyByteBuf buf) {
+        int count = buf.readVarInt();
+        List<CourseInfo> courses = new ArrayList<>(count);
+        for (int i = 0; i < count; i++) {
+            courses.add(readCourse(buf));
+        }
+        return new RunEvent.Courses(List.copyOf(courses));
+    }
+
+    private static CourseInfo readCourse(RegistryFriendlyByteBuf buf) {
+        String id = buf.readUtf();
+        Component name = parseName(buf.readUtf(), id);
+        String dimension = buf.readUtf();
+        int checkpoints = buf.readVarInt();
+        Vec3 start = readVec(buf);
+        float yaw = buf.readFloat();
+        Vec3 board = buf.readBoolean() ? readVec(buf) : null;
+
+        int size = buf.readVarInt();
+        List<CourseInfo.Entry> top = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            top.add(new CourseInfo.Entry(buf.readUtf(), buf.readLong()));
+        }
+        long best = buf.readLong();
+        int rank = buf.readVarInt();
+        return new CourseInfo(id, name, dimension, checkpoints, start, yaw, board,
+                List.copyOf(top), best, rank);
+    }
+
+    private static Vec3 readVec(RegistryFriendlyByteBuf buf) {
+        return new Vec3(buf.readDouble(), buf.readDouble(), buf.readDouble());
     }
 
     private static Component parseName(String json, String fallback) {

@@ -38,7 +38,7 @@ public final class CompanionMod implements ClientModInitializer {
         C2SPlayChannelEvents.REGISTER.register((handler, sender, client, channels) -> {
             if (channels.contains(HelloPayload.TYPE.id())) sender.sendPacket(HelloPayload.INSTANCE);
         });
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> tracker.stop());
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> tracker.disconnect());
 
         KeyMapping.Category category = KeyMapping.Category.register(id("main"));
         ghostKey = key("ghost", GLFW.GLFW_KEY_G, category);
