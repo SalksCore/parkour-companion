@@ -6,16 +6,17 @@
   "msg.parkour-companion.ghost.off": "Ghost disabled",
   "msg.parkour-companion.hud.on": "HUD enabled",
   "msg.parkour-companion.hud.off": "HUD disabled",
-  "hud.parkour-companion.checkpoint": "Checkpoint %s/%s",
+  "hud.parkour-companion.checkpoint": "CP %s/%s",
   "hud.parkour-companion.finish": "Finish",
   "hud.parkour-companion.best": "PB %s",
-  "hud.parkour-companion.done": "Finished!",
+  "hud.parkour-companion.done": "Finished",
   "hud.parkour-companion.rank": "#%s",
   "hud.parkour-companion.new-best": "New best %s",
   "hud.parkour-companion.no-best": "%s off your best",
-  "decor.parkour-companion.start": "Start",
+  "decor.parkour-companion.start": "Start the course",
   "decor.parkour-companion.best": "Your best %s · #%s",
   "decor.parkour-companion.no-best": "No record yet",
   "decor.parkour-companion.board": "Best times",
-  "decor.parkour-companion.empty": "Nobody has finished yet"
+  "decor.parkour-companion.empty": "Nobody has finished yet",
+  "decor.parkour-companion.finish": "Finish"
 }

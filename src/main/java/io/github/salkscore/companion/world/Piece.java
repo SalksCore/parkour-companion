@@ -14,6 +14,11 @@ interface Piece {
 
     Vec3 anchor();
 
-    default void tick(int tick) {
+    // 0 pour le départ, 1..n pour les checkpoints, n + 1 pour l'arrivée, -1 sinon
+    default int order() {
+        return -1;
+    }
+
+    default void highlight(boolean on) {
     }
 }
