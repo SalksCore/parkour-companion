@@ -1,0 +1,16 @@
+{
+  "key.category.parkour-companion.main": "Parkour Companion",
+  "key.parkour-companion.ghost": "Toggle ghost",
+  "key.parkour-companion.hud": "Toggle HUD",
+  "msg.parkour-companion.ghost.on": "Ghost enabled",
+  "msg.parkour-companion.ghost.off": "Ghost disabled",
+  "msg.parkour-companion.hud.on": "HUD enabled",
+  "msg.parkour-companion.hud.off": "HUD disabled",
+  "hud.parkour-companion.checkpoint": "Checkpoint %s/%s",
+  "hud.parkour-companion.finish": "Finish",
+  "hud.parkour-companion.best": "PB %s",
+  "hud.parkour-companion.done": "Finished!",
+  "hud.parkour-companion.rank": "#%s",
+  "hud.parkour-companion.new-best": "New best %s",
+  "hud.parkour-companion.no-best": "%s off your best"
+}

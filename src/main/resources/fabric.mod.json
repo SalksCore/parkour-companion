@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "parkour-companion",
+  "version": "${version}",
+  "name": "Parkour Companion",
+  "description": "Fantôme de ton record, HUD et checkpoints visibles pour le plugin Parkour.",
+  "authors": ["SalksCore"],
+  "contact": {
+    "sources": "https://github.com/SalksCore/parkour-companion"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["io.github.salkscore.companion.CompanionMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21.11",
+    "java": ">=21"
+  }
+}
