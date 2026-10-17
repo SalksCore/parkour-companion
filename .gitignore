@@ -1,6 +1,6 @@
 build/
 .gradle/
-run/
+/run/
 out/
 .idea/
 *.iml
