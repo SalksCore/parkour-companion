@@ -8,11 +8,10 @@ avec le mod tu as en plus :
   temps pendant que tu cours. Il est enregistré chez toi, par serveur et par parcours.
 - **Les temps intermédiaires** : à chaque checkpoint, l'écart avec ton record s'affiche en
   vert si tu es en avance, en rouge si tu es en retard.
-- **Un HUD propre** en haut de l'écran : nom du parcours, chrono, checkpoint en cours,
-  direction et distance du prochain point, barre de progression, record perso.
-- **Des checkpoints visibles** : un cube lumineux tourne au-dessus du prochain checkpoint
-  (jaune) et de l'arrivée (rouge). Il se voit à travers les murs, avec un rayon de
-  particules pour le repérer de loin.
+- **Un HUD sur une ligne** en haut de l'écran : chrono, checkpoint en cours, direction et
+  distance du prochain point, record perso.
+- **Ton record sur place** : au départ et sur le tableau des temps, avec ton rang.
+- **Un petit rayon de particules** au-dessus du prochain point pour le repérer de loin.
 
 Quand le serveur voit le mod, il coupe son action bar et sa bossbar pour ne pas faire
 doublon.

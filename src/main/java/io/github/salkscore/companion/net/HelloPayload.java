@@ -5,7 +5,6 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
 
-// Prévient le plugin que le mod est là, il coupe alors son action bar et sa bossbar
 public record HelloPayload() implements CustomPacketPayload {
 
     public static final HelloPayload INSTANCE = new HelloPayload();

@@ -6,8 +6,7 @@ import net.minecraft.world.entity.player.Player;
 
 public final class GhostRecorder {
 
-    // une heure à 20 ticks par seconde, au-delà on arrête d'enregistrer
-    private static final int MAX_FRAMES = 72_000;
+    private static final int MAX_FRAMES = 20 * 60 * 60;
 
     private final List<GhostFrame> frames = new ArrayList<>();
     private final List<Long> checkpoints = new ArrayList<>();

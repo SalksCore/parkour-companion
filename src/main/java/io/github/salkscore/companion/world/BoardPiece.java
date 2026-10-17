@@ -11,7 +11,6 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Display;
 import net.minecraft.world.phys.Vec3;
 
-// Tableau des meilleurs temps, en simple texte vanilla
 final class BoardPiece implements Piece {
 
     private static final int ROWS = 10;

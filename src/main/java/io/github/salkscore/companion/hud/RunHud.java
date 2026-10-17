@@ -14,7 +14,6 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
-// Une seule ligne en haut de l'écran, avec le fond du chat vanilla
 public final class RunHud implements HudElement {
 
     private static final int TOP = 4;

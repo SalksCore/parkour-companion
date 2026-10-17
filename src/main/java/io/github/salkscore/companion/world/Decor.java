@@ -7,18 +7,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 
-// Zones de départ, checkpoints, arrivées et tableaux de tous les parcours du monde courant
 public final class Decor {
 
-    private final List<Placed> pieces = new ArrayList<>();
+    private final List<Piece> pieces = new ArrayList<>();
     private List<CourseInfo> courses = List.of();
     private ClientLevel level;
-    private String litCourse;
-    private int litOrder = -1;
     private int tick;
-
-    private record Placed(String course, Piece piece) {
-    }
 
     public void update(List<CourseInfo> courses) {
         this.courses = courses;
@@ -32,18 +26,6 @@ public final class Decor {
         return null;
     }
 
-    // fait briller le prochain point à atteindre, null pour tout éteindre
-    public void highlight(String course, int order) {
-        litCourse = course;
-        litOrder = order;
-        pieces.forEach(this::applyHighlight);
-    }
-
-    private void applyHighlight(Placed placed) {
-        boolean on = placed.course().equals(litCourse) && placed.piece().order() == litOrder;
-        placed.piece().highlight(on);
-    }
-
     public void tick(Minecraft client) {
         if (client.level != level) {
             rebuild(client.level);
@@ -51,12 +33,11 @@ public final class Decor {
         }
         if (level == null || ++tick % 20 != 0) return;
 
-        for (Placed placed : pieces) {
-            Piece piece = placed.piece();
+        // les entités client disparaissent quand leur chunk est déchargé
+        for (Piece piece : pieces) {
             if (piece.missing() && level.hasChunkAt(BlockPos.containing(piece.anchor()))) {
                 piece.remove();
                 piece.spawn(level);
-                applyHighlight(placed);
             }
         }
     }
@@ -67,31 +48,17 @@ public final class Decor {
     }
 
     private void rebuild(ClientLevel level) {
-        pieces.forEach(placed -> placed.piece().remove());
+        pieces.forEach(Piece::remove);
         pieces.clear();
         this.level = level;
         if (level == null) return;
 
         String dimension = level.dimension().identifier().toString();
         for (CourseInfo course : courses) {
-            if (course.dimension().equals(dimension)) add(course);
+            if (!course.dimension().equals(dimension)) continue;
+            pieces.add(new StartLabel(course));
+            if (course.board() != null) pieces.add(new BoardPiece(course));
         }
-        for (Placed placed : pieces) {
-            placed.piece().spawn(level);
-            applyHighlight(placed);
-        }
-    }
-
-    private void add(CourseInfo course) {
-        String id = course.id();
-        pieces.add(new Placed(id, new StartZone(course)));
-        for (int i = 0; i < course.checkpoints().size(); i++) {
-            pieces.add(new Placed(id, new CheckpointMark(course.checkpoints().get(i), i + 1)));
-        }
-        if (course.finish() != null) {
-            int order = course.checkpoints().size() + 1;
-            pieces.add(new Placed(id, new FinishLine(course.finish(), course.finishYaw(), order)));
-        }
-        if (course.board() != null) pieces.add(new Placed(id, new BoardPiece(course)));
+        pieces.forEach(piece -> piece.spawn(level));
     }
 }

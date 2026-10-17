@@ -6,7 +6,6 @@ import net.minecraft.world.phys.Vec3;
 
 public sealed interface RunEvent {
 
-    // points : départ, checkpoints dans l'ordre, puis arrivée
     record Start(String course, Component name, String dimension, List<Vec3> points)
             implements RunEvent {
     }

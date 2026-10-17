@@ -2,7 +2,6 @@ package io.github.salkscore.companion.ghost;
 
 import java.util.List;
 
-// checkpoints : temps serveur au passage de chaque checkpoint, sert aux temps intermédiaires
 public record GhostRecording(long time, List<Long> checkpoints, List<GhostFrame> frames) {
 
     public Long checkpoint(int index) {

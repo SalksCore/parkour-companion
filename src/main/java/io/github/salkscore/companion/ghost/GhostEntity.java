@@ -8,8 +8,7 @@ import net.minecraft.client.player.RemotePlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.PlayerSkin;
 
-// Joueur qui n'existe que chez le client. Invisible mais pas pour nous :
-// Minecraft le dessine alors en transparent, comme un coéquipier invisible.
+// invisible mais visible pour nous : le jeu le dessine en transparent
 final class GhostEntity extends RemotePlayer {
 
     GhostEntity(ClientLevel level, GameProfile profile) {

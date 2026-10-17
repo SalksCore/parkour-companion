@@ -61,21 +61,7 @@ public record RunPayload(RunEvent event) implements CustomPacketPayload {
         Component name = parseName(buf.readUtf(), id);
         String dimension = buf.readUtf();
         Vec3 start = readVec(buf);
-        float yaw = buf.readFloat();
         Vec3 board = buf.readBoolean() ? readVec(buf) : null;
-
-        Vec3 finish = null;
-        float finishYaw = 0f;
-        if (buf.readBoolean()) {
-            finish = readVec(buf);
-            finishYaw = buf.readFloat();
-        }
-
-        int count = buf.readVarInt();
-        List<Vec3> checkpoints = new ArrayList<>(count);
-        for (int i = 0; i < count; i++) {
-            checkpoints.add(readVec(buf));
-        }
 
         int size = buf.readVarInt();
         List<CourseInfo.Entry> top = new ArrayList<>(size);
@@ -84,8 +70,7 @@ public record RunPayload(RunEvent event) implements CustomPacketPayload {
         }
         long best = buf.readLong();
         int rank = buf.readVarInt();
-        return new CourseInfo(id, name, dimension, start, yaw, board, finish, finishYaw,
-                List.copyOf(checkpoints), List.copyOf(top), best, rank);
+        return new CourseInfo(id, name, dimension, start, board, List.copyOf(top), best, rank);
     }
 
     private static Vec3 readVec(RegistryFriendlyByteBuf buf) {
